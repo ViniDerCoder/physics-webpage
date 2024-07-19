@@ -2,12 +2,14 @@ import { Block } from "./Objects/Block.js";
 import { Force } from "./Forces/Force.js";
 import { Vector } from "./Vector.js";
 import { Gravity } from "./Forces/Gravity.js";
+import { PhysicObject } from "./Objects/PhysicObject.js";
 
 class Playground {
-    objects = [];
+    objects;
     canvas;
 
     constructor() {
+        this.objects = [];
         this.canvas = document.getElementsByClassName("playground").item(0);
         if (!this.canvas) {
             throw new Error("Canvas not found");
@@ -16,6 +18,9 @@ class Playground {
         }
     }
 
+    /**
+     * @param {PhysicObject} object 
+     */
     addObject(object) {
         this.objects.push(object);
     }
@@ -42,7 +47,5 @@ setInterval(() => {
     });
 }, 1);
 
-playground.addObject(new Block(playground.context, 20, 20));
-playground.objects[0].addForce(new Gravity(1));
-playground.addObject(new Block(playground.context, 40, 40));
-playground.objects[1].addForce(new Gravity(2));
+playground.addObject(new Block(playground.context, 20, 20, 1));
+playground.addObject(new Block(playground.context, 40, 40, 2));

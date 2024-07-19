@@ -9,11 +9,4 @@ export class Force {
     constructor(vector) {
         this.vector = vector;
     }
-
-    prepare() {}
-
-    apply(physicObject, factor, ...prep) {
-        this.prepare(...prep);
-        physicObject.movement = physicObject.movement.add(this.vector.multiply(factor));
-    }
 }

@@ -1,22 +1,26 @@
+import { Force } from "../Forces/Force.js";
 import { Vector } from "../Vector.js";
 
 const decreaseFactor = 0.01;
 
 export class PhysicObject {
-    x;
-    y;
-    canvas;
-    forces = [];
+    position = new Vector(0, 0);
     movement = new Vector(0, 0);
+    accelaration = new Vector(0, 0);
+
+    mass;
+    canvas;
+
 
     /**
      * @param {number} x 
      * @param {number} y 
      */
 
-    constructor(ctx, x, y) {
-        this.x = x;
-        this.y = y;
+    constructor(ctx, x, y, mass) {
+        this.position.x = x;
+        this.position.y = y;
+        this.mass = mass;
 
         this.canvas = ctx;
     }
@@ -25,10 +29,17 @@ export class PhysicObject {
         throw new Error("Method not implemented");
     }
 
+    applyForces() {
+        throw new Error("Method not implemented");
+    }
+
     tick() {
-        this.applyForces(decreaseFactor);
-        this.x += this.movement.component1 * decreaseFactor;
-        this.y += this.movement.component2 * decreaseFactor;
+        this.movement.add(this.accelaration.multiply(decreaseFactor));
+        this.position.add(this.movement.multiply(decreaseFactor));
+        this.accelaration = new Vector(0, 0);
+
+        this.applyForces();
+
         this.handlePossibleCollisions();
     }
 
@@ -36,13 +47,10 @@ export class PhysicObject {
         throw new Error("Method not implemented");
     }
 
+    /**
+     * @param {Force} force 
+     */
     addForce(force) {
-        this.forces.push(force);
-    }
-
-    applyForces(factor) {
-        this.forces.forEach(force => {
-            force.apply(this, factor);
-        });
+        this.accelaration.add(force.vector.multiply(1/this.mass));
     }
 }
