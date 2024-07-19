@@ -34,8 +34,8 @@ export class PhysicObject {
     }
 
     tick() {
-        this.movement.add(this.accelaration.multiply(decreaseFactor));
-        this.position.add(this.movement.multiply(decreaseFactor));
+        this.movement.add(Vector.multiply(this.accelaration, decreaseFactor));
+        this.position.add(Vector.multiply(this.movement, decreaseFactor));
         this.accelaration = new Vector(0, 0);
 
         this.applyForces();
@@ -51,6 +51,7 @@ export class PhysicObject {
      * @param {Force} force 
      */
     addForce(force) {
-        this.accelaration.add(force.vector.multiply(1/this.mass));
+        force.vector.multiply(1/this.mass);
+        this.accelaration.add(force.vector);
     }
 }

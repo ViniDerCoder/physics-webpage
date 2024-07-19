@@ -19,8 +19,8 @@ export class Gravity extends Force {
     
     /**
      * 
-     * @param {PhysicObject} object1 
-     * @param {PhysicObject} object2 
+     * @param {PhysicObject} attractor 
+     * @param {PhysicObject} object 
      */
     constructor(attractor, object) {
         let force = new Force(Vector.subtract(attractor.position, object.position));
@@ -30,7 +30,7 @@ export class Gravity extends Force {
         if(d > 25) d = 25
 
         let strength = (G * (attractor.mass * object.mass)) / Math.pow(d, 2);
-        force.vector.setMag(strength);
-        object.addForce(force);
+        force.vector.setMagnitude(strength);
+        super(force.vector);
     }
 }
