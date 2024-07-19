@@ -1,0 +1,16 @@
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.playground {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+    flex: 1;
+    background-color: #d13e3e;
+}
