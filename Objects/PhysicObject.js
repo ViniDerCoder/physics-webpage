@@ -1,44 +1,48 @@
+import { Vector } from "../Vector.js";
 
+const decreaseFactor = 0.01;
 
 export class PhysicObject {
     x;
     y;
-    mass;
     canvas;
     forces = [];
+    movement = new Vector(0, 0);
 
     /**
      * @param {number} x 
      * @param {number} y 
-     * @param {number} mass 
      */
 
-    constructor(x, y, mass) {
+    constructor(ctx, x, y) {
         this.x = x;
         this.y = y;
-        this.mass = mass;
 
-        let canvas = document.getElementsByClassName("playground").item(0);
-        if(!canvas) {
-            throw new Error("Canvas not found");
-        } else {
-            this.canvas = canvas.getContext('2d');
-        }
+        this.canvas = ctx;
     }
 
     render() {
         throw new Error("Method not implemented");
     }
 
-    tick() {}
+    tick() {
+        this.applyForces(decreaseFactor);
+        this.x += this.movement.component1 * decreaseFactor;
+        this.y += this.movement.component2 * decreaseFactor;
+        this.handlePossibleCollisions();
+    }
+
+    handlePossibleCollisions() {
+        throw new Error("Method not implemented");
+    }
 
     addForce(force) {
         this.forces.push(force);
     }
 
-    applyForces() {
+    applyForces(factor) {
         this.forces.forEach(force => {
-            force.apply(this);
+            force.apply(this, factor);
         });
     }
 }
