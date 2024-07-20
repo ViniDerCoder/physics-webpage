@@ -16,6 +16,7 @@ export class Vector {
     multiply(scalar) {
         this.x *= scalar
         this.y *= scalar
+        return this;
     }
 
     static multiply(vector, scalar) {
@@ -25,6 +26,7 @@ export class Vector {
     add(vector) {
         this.x += vector.x
         this.y += vector.y
+        return this;
     }
 
     static add(vector1, vector2) {
@@ -34,6 +36,7 @@ export class Vector {
     subtract(vector) {
         this.x -= vector.x
         this.y -= vector.y
+        return this;
     }
 
     static subtract(vector1, vector2) {
@@ -59,6 +62,7 @@ export class Vector {
     square() {
         this.x *= this.x
         this.y *= this.y
+        return this;
     }
 
     static square(vector) {
@@ -69,10 +73,31 @@ export class Vector {
         let length = this.getLength();
         this.x = this.x / length * magnitude;
         this.y = this.y / length * magnitude;
+        return this;
     }
 
     static setMagnitude(vector, magnitude) {
         let length = Vector.getLength(vector);
         return new Vector(vector.x / length * magnitude, vector.y / length * magnitude);
+    }
+
+    copy() {
+        return new Vector(this.x, this.y);
+    }
+
+    static copy(vector) {
+        return new Vector(vector.x, vector.y);
+    }
+
+    normalize() {
+        let length = this.getLength();
+        this.x /= length;
+        this.y /= length;
+        return this;
+    }
+
+    static normalize(vector) {
+        let length = Vector.getLength(vector);
+        return new Vector(vector.x / length, vector.y / length);
     }
 }

@@ -1,7 +1,7 @@
 import { Force } from "../Forces/Force.js";
 import { Vector } from "../Vector.js";
 
-const decreaseFactor = 0.01;
+export const decreaseFactor = 0.01;
 
 export class PhysicObject {
     position = new Vector(0, 0);
@@ -9,7 +9,6 @@ export class PhysicObject {
     accelaration = new Vector(0, 0);
 
     mass;
-    canvas;
 
 
     /**
@@ -17,12 +16,10 @@ export class PhysicObject {
      * @param {number} y 
      */
 
-    constructor(ctx, x, y, mass) {
+    constructor(x, y, mass) {
         this.position.x = x;
         this.position.y = y;
         this.mass = mass;
-
-        this.canvas = ctx;
     }
 
     render() {

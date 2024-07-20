@@ -3,14 +3,15 @@ import { Force } from "./Forces/Force.js";
 import { Vector } from "./Vector.js";
 import { Gravity } from "./Forces/Gravity.js";
 import { PhysicObject } from "./Objects/PhysicObject.js";
+import { Sphere } from "./Objects/Sphere.js";
 
-window.preload = function() {
+function preload() {
     console.log("p5.js is loaded and ready to go!");
 }
 
-const diagonalVector = new Vector(800, 600);
+export const diagonalVector = new Vector(1800, 900);
 
-let playground
+export let playground
 
 function setup() {
     createCanvas(diagonalVector.x, diagonalVector.y);
@@ -39,9 +40,9 @@ function setup() {
         });
     }, 1);
     
-    playground.addObject(new Block(playground.context, 20, 20, 80));
-    playground.addObject(new Block(playground.context, 40, 40, 200));
-    playground.addObject(new Block(playground.context, 30, 65, 100));
+    playground.addObject(new Block(20, 20, 80));
+    playground.addObject(new Block(40, 40, 200));
+    playground.addObject(new Sphere(30, 65, 100));
 }
 
 class Playground {
@@ -59,11 +60,9 @@ class Playground {
     }
 
     clear() {
-        background(255);
+        background(230);
     }
 }
 
-module.exports = {
-    diagonalVector,
-    playground
-}
+window.setup = setup;
+window.preload = preload;
