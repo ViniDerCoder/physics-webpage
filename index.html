@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,26 @@
     <link rel="stylesheet" href="./styles.css">
     <script type="module" src="./index.js"></script>
 </head>
+
 <body>
+    <main></main>
+    <div class="input-container">
+        <div class="input-container-weight">
+            <label for="weight">Weight</label>
+            <input class="input-weight" type="number" id="weight" min="1" max="10000000" value="100">
+        </div>
+        <div class="input-container-clear">
+            <button class="button-clear" id="clear">Clear</button>
+        </div>
+        <div class="input-container-attraction">
+            <label for="g">Attraction</label>
+            <input class="input-g" type="number" id="g" min="1" max="10000" value="100">
+        </div>
+        <div class="input-container-gravity">
+            <label for="gravity">Gravity</label>
+            <input class="input-gravity" type="checkbox" id="gravity" checked>
+        </div>
+    </div>
 </body>
+
 </html>

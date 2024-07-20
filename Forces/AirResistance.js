@@ -12,6 +12,6 @@ export class AirResistance extends Force {
      */
     constructor(movement, dragCoefficient, area) {
 
-        super(movement.copy().square().multiply(-1/2).multiply(airDensity).multiply(dragCoefficient).multiply(area));
+        super(movement.copy().multiply(-1/2).normalize().multiply(dragCoefficient).multiply(movement.getLength() * movement.getLength()).multiply(0.005));
     }
 }

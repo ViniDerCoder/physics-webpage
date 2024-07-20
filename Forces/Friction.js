@@ -9,8 +9,7 @@ export class Friction extends Force {
      * @param {number} frictionCoefficient 
      */
     constructor(movement, frictionCoefficient) {
-        super(movement.copy().multiply(-1).normalize().multiply(frictionCoefficient*100000))
-        console.log(this.vector)
+        super(movement.copy().multiply(-1).normalize().multiply(frictionCoefficient*50000))
     }
     
 }

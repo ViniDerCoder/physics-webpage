@@ -1,7 +1,7 @@
 import { Block } from "./Objects/Block.js";
 import { Force } from "./Forces/Force.js";
 import { Vector } from "./Vector.js";
-import { Gravity } from "./Forces/Gravity.js";
+import { Gravity, setG, setGravity } from "./Forces/Gravity.js";
 import { PhysicObject } from "./Objects/PhysicObject.js";
 import { Sphere } from "./Objects/Sphere.js";
 
@@ -39,10 +39,6 @@ function setup() {
             object.render();
         });
     }, 1);
-    
-    playground.addObject(new Block(20, 20, 80));
-    playground.addObject(new Block(40, 40, 200));
-    playground.addObject(new Sphere(30, 65, 100));
 }
 
 class Playground {
@@ -63,6 +59,38 @@ class Playground {
         background(230);
     }
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("DOM fully loaded and parsed");
+    const mouse = new Vector(0, 0);
+    
+    document.addEventListener("keydown", function(event) {
+        const weight = document.getElementById("weight").value;
+        if(event.key === "b") {
+            playground.addObject(new Block(mouse.x, mouse.y, parseInt(weight)));
+        }
+        if(event.key === "s") {
+            playground.addObject(new Sphere(mouse.x, mouse.y, parseInt(weight)));
+        }
+    });
+
+    document.addEventListener("mousemove", function(event) {
+        mouse.x = event.clientX;
+        mouse.y = event.clientY;
+    });
+
+    document.getElementById("clear").addEventListener("click", function() {
+        playground.objects = [];
+    });
+
+    document.getElementById("g").addEventListener("input", function() {
+        setG(parseInt(this.value) / 100);
+    });
+
+    document.getElementById("gravity").addEventListener("input", function() {
+        setGravity(this.checked);
+    });
+});
 
 window.setup = setup;
 window.preload = preload;

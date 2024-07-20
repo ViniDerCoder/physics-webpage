@@ -2,6 +2,7 @@ import { PhysicObject } from './PhysicObject.js';
 import { BaseGravity } from '../Forces/Gravity.js';
 import { Friction } from '../Forces/Friction.js';
 import { diagonalVector } from '../index.js';
+import { AirResistance } from '../Forces/AirResistance.js';
 
 export class Sphere extends PhysicObject {
 
@@ -15,8 +16,6 @@ export class Sphere extends PhysicObject {
         stroke(0)
         fill(127)
         circle(this.position.x, this.position.y, this.radius * 2);
-        stroke(255, 0, 0);
-        line(this.position.x, this.position.y, this.position.x + this.movement.x, this.position.y + this.movement.y);
     }
 
     handlePossibleCollisions() {
@@ -44,5 +43,6 @@ export class Sphere extends PhysicObject {
 
     applyForces() {
         this.addForce(new BaseGravity({mass: this.mass}));
+        this.addForce(new AirResistance(this.movement, 1.28, Math.PI * Math.pow(this.radius, 2)));
     }
 }

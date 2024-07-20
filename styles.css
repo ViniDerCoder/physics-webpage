@@ -6,11 +6,53 @@ body {
     padding: 0;
 }
 
-.playground {
+.input-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 2rem;
-    flex: 1;
-    background-color: #afd1df73;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.input-container > * > * {
+    display: flex;
+}
+
+.input-container > * {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.input-container > * > input {
+    display: flex;
+    outline: none;
+    border-radius: 0.4rem;
+    margin: 0.2rem;
+    padding: 0.1rem;
+}
+
+.input-container > * > input:focus {
+    outline: none;
+    background-color: #00000034;
+}
+
+.input-container > * > button {
+    display: flex;
+    outline: none;
+    border-radius: 0.4rem;
+    margin: 0.2rem;
+    padding: 0.1rem;
+}
+
+.input-container > * > button:hover {
+    background-color: #00000034;
 }

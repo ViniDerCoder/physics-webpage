@@ -3,7 +3,20 @@ import { Vector } from '../Vector.js';
 import { PhysicObject } from '../Objects/PhysicObject.js';
 
 const gravitationalAcceleration = 9.81;
-const G = 1;
+
+let gravityEnabled = true
+
+export function setGravity(val) {
+    gravityEnabled = val
+    console.log("Gravity is now " + val ? "enabled" : "disabled")
+}
+
+let G = 1;
+
+export function setG(value) {
+    G = value;
+    console.log("G is now " + G);
+}
 
 export class BaseGravity extends Force {
 
@@ -11,7 +24,7 @@ export class BaseGravity extends Force {
      * @param {{mass: number}} param0 
      */
     constructor({mass}) {
-        super(new Vector(0, gravitationalAcceleration * mass))
+        super(new Vector(0, (gravityEnabled ? gravitationalAcceleration : 0) * mass))
     }
 }
 

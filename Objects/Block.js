@@ -16,7 +16,7 @@ export class Block extends PhysicObject {
     render() {
         stroke(0)
         fill(127)
-        rect(this.position.x, this.position.y, this.width, this.height);
+        rect(this.position.x - this.width/2, this.position.y - this.height/2, this.width, this.height);
     }
 
     handlePossibleCollisions() {
@@ -44,6 +44,6 @@ export class Block extends PhysicObject {
 
     applyForces() {
         this.addForce(new BaseGravity({mass: this.mass}));
-        //this.addForce(new AirResistance(this.movement, 1.28, this.width * this.height));
+        this.addForce(new AirResistance(this.movement, 1.28, this.width * this.height));
     }
 }
